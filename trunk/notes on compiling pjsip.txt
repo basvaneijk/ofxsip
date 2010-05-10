@@ -1,0 +1,28 @@
+How to compile pjsip for openframeworks (for the mac)
+---
+Marek Bereza 10-05-10
+---
+
+
+I'm not 100% on this, but I think oF currently only works if you compile it for i386, and not x86_64 - I think it's something to do with quicktime. Therefore, when compiling pjsip, you've got to make sure it's compiled for i386, or you can't link it to an oF project.
+
+There's no proper way to compile pjsip for i386 using ./configure, but I've found a way as listed below...
+
+To force pjsip to compile for i386 architecture on the mac (if you have a 64 bit machine) you run configure as normal, but before running make, you need to edit build/host-unix.mak and change it so the last 4 lines read:
+
+export HOST_SOURCES :=
+export HOST_CFLAGS := -arch i386
+export HOST_CXXFLAGS :=
+export HOST_LDFLAGS := -arch i386
+
+
+Then, there's one issue with pjsip - in the "third party" folder, there's a library called ilbc. ilbc has a function called window(...). Openframeworks also has a function or symbol called window, so you need to change the name of this to get it to work. It's defined in ilbc/helpfun.h. I renamed it and all calls to it ilbc_window() and it compiled fine.
+
+then run:
+make dep && make
+
+this should compile everything except the test (there's an error), but the static libraries should be created.
+
+Then you need to find all the .a files and put them in ofxSip (in the lib folder).
+
+
