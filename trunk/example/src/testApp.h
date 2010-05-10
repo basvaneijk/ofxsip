@@ -3,6 +3,7 @@
 
 
 #include "ofMain.h"
+#include "ofxSip.h"
 
 class testApp : public ofBaseApp{
 

@@ -24,10 +24,10 @@
  * @file string.h
  * @brief PJLIB String Operations.
  */
-
+#include <string.h>
 #include <pj/types.h>
 #include <pj/compat/string.h>
-#include <string.h>
+
 
 PJ_BEGIN_DECL
 
