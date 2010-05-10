@@ -25,7 +25,6 @@
  * @file math.h
  * @brief Mathematics and Statistics.
  */
-
 #include <pj/string.h>
 #include <pj/compat/high_precision.h>
 
